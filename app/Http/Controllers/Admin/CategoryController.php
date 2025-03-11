@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'desc')->get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -30,7 +30,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        Category::create($data);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Category created successfully',
+            'text' => 'Category created successfully',
+        ]);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**

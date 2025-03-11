@@ -149,5 +149,14 @@
         {{ $slot }}
 
         @fluxScripts
+
+        @if (session('swal'))
+        <script>
+            import Swal from 'sweetalert2';
+            window.Swal = Swal;
+            Swal.fire(@json(session('swal')));
+        </script>
+        @endif
+
     </body>
 </html>

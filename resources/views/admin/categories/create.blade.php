@@ -7,9 +7,17 @@
     <div class="card">
         <form action="{{ route('admin.categories.store') }}" method="post">
             @csrf
-            <flux:input type="text" name="name" label="Nombre" placeholder="Ej. Libro" class="mb-4" required></flux:input>
-            <flux:input type="text"  name="description" label="Descripción" placeholder="Ej. Libro de lectura" class="mb-4" required ></flux:input>
-            <flux:button variant="primary">Guardar</flux:button>
+            <flux:field>
+                <flux:label>Nombre</flux:label>
+                <flux:input name="name" placeholder="Ej. Libro" value="{{ old('name') }}" autofocus />
+                <flux:error name="name" />
+            </flux:field>
+            <flux:field class="mt-4">
+                <flux:label>Descripci&oacute;n</flux:label>
+                <flux:input name="description" placeholder="Ej. Libro de lectura" value="{{ old('description') }}" />
+                <flux:error name="description" />
+            </flux:field>
+            <flux:button class="mt-4" type="submit" variant="primary">Guardar</flux:button>
         </form>
     </div>
 
