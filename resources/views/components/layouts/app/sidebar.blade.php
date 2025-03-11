@@ -151,9 +151,9 @@
         @fluxScripts
 
         @if (session('swal'))
-        <script>
-            import Swal from 'sweetalert2';
-            window.Swal = Swal;
+        <script type="module">
+            console.log('SweetAlert2 está disponible:', typeof Swal); // Debe ser "function"
+            console.log('Datos de SweetAlert2:', @json(session('swal'))); // Debe ser un objeto válido
             Swal.fire(@json(session('swal')));
         </script>
         @endif

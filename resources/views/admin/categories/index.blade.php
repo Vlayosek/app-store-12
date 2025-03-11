@@ -11,7 +11,7 @@
     </div>
 
     <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+         <table id="myTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -24,7 +24,7 @@
                         Descripci&oacute;n
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Edit
+                        Acciones
                     </th>
                 </tr>
             </thead>
@@ -42,7 +42,17 @@
                             {{ $category->description }}
                         </td>
                         <td class="px-6 py-4">
-                            $2999
+                            <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-blue text-xs">
+                                Editar
+                            </a>
+                            <form action="{{ route('admin.categories.destroy', $category) }}" method="post"
+                                class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-red text-xs ml-2">
+                                    Eliminar
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -50,4 +60,13 @@
         </table>
     </div>
 
+    <div class="mt-4">
+        {{ $categories->links() }}
+    </div>
+
 </x-layouts.app>
+
+<script>
+    import {Datatables} from 'simple-datatables';
+    new simpleDatatables.DataTable('#myTable');
+</script>
