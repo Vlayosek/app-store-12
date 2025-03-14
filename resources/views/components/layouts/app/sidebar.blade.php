@@ -13,6 +13,12 @@
                 'url' => route('admin.categories.index'),
                 'current' => request()->routeIs('admin.categories.*'),
             ],
+            [
+                'name' => 'Productos',
+                'icon' => 'archive-box',
+                'url' => route('admin.products.index'),
+                'current' => request()->routeIs('admin.products.*'),
+            ],
         ],
     ];
 @endphp
@@ -150,13 +156,6 @@
 
         @fluxScripts
 
-        @if (session('swal'))
-        <script type="module">
-            console.log('SweetAlert2 está disponible:', typeof Swal); // Debe ser "function"
-            console.log('Datos de SweetAlert2:', @json(session('swal'))); // Debe ser un objeto válido
-            Swal.fire(@json(session('swal')));
-        </script>
-        @endif
 
     </body>
 </html>

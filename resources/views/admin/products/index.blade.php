@@ -2,11 +2,11 @@
     <div class="mb-4 flex justify-between items-center">
         <flux:breadcrumbs>
             <flux:breadcrumbs.item :href="route('dashboard')">Dashboard</flux:breadcrumbs.item>
-            <flux:breadcrumbs.item href="#">Categorias</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="#">Productos</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-blue text-xs">
-            Crear Categoria
+        <a href="{{ route('admin.products.create') }}" class="btn btn-blue text-xs">
+            Crear Producto
         </a>
     </div>
 
@@ -29,23 +29,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($products as $product)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $category->id }}
+                            {{ $product->id }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $category->name }}
+                            {{ $product->name }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $category->description }}
+                            {{ $product->description }}
                         </td>
                         <td class="px-6 py-4 flex gap-2">
-                            <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-blue text-xs">
+                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-blue text-xs">
                                 Editar
                             </a>
-                            <form class="delete-form" action="{{ route('admin.categories.destroy', $category) }}" method="post"
+                            <form class="delete-form" action="{{ route('admin.products.destroy', $product) }}" method="post"
                                 class="inline">
                                 @csrf
                                 @method('DELETE')
@@ -61,7 +61,7 @@
     </div>
 
     <div class="mt-4">
-        {{ $categories->links() }}
+        {{ $products->links() }}
     </div>
 
     @push('js')
